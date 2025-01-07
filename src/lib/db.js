@@ -116,9 +116,6 @@ async function deleteRecipe(id) {
 //////////////////////////////////////////
 
 // Get all ingredients
-
-// TODO: implement
-
 async function getIngredients() {
   let ingredients = [];
   try {
@@ -143,6 +140,53 @@ async function getIngredients() {
         $project: {
           _id: 0,
           name: "$_id"
+        }
+      }
+    ];
+
+    // Get all objects that match the query
+    ingredients = await collection.aggregate(pipeline).toArray();
+  } catch (error) {
+    console.log(error.message);
+    return { error: error.message };
+  }
+  return ingredients;
+}
+
+// Get all ingredients
+async function getIngredientsCounts() {
+  let ingredients = [];
+  try {
+    const collection = db.collection("recipes");
+
+    // You can specify a query/filter here
+    // See https://www.mongodb.com/docs/drivers/node/current/fundamentals/crud/query-document/
+    const query = {};
+
+    const pipeline = [
+      {
+        $unwind: {
+          path: "$ingredients"
+        }
+      },
+      {
+        $group: {
+          _id: "$ingredients.name",
+          count: {
+            $count: {}
+          }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          name: "$_id",
+          count: 1
+        }
+      },
+      {
+        $sort: {
+          count: -1
         }
       }
     ];
@@ -213,6 +257,7 @@ export default {
   updateRecipe,
   deleteRecipe,
   getIngredients,
+  getIngredientsCounts,
   getCuisines,
   updateCuisine,
 };

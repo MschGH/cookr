@@ -47,12 +47,13 @@
 
 <a class="btn btn-primary me-3" href="/recipes/create">Add new recipe</a>
 <button class="btn btn-secondary me-2" onclick={toggleView}>Toggle view</button>
-<button class="btn btn-secondary" onclick={toggleFilter}>Show filter</button><br
+<button class="btn btn-secondary me-2" onclick={toggleFilter}>Show filter</button>
+<a class="btn btn-secondary" href="/ingredientsChart">Ingredients chart</a><br
 />
 
 {#if showFilter}
     <div
-        class="mt-4 d-flex flex-wrap gap-3 position-fixed col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"
+        class="mt-4 d-flex flex-wrap gap-3 position-fixed col-2 col-sm-2 col-md-2 col-lg-2 col-xl-1"
         style="max-width: 15%; max-height: 70%; overflow: auto;"
     >
         {#each ingredients as ingredient}
