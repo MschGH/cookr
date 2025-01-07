@@ -1,6 +1,4 @@
 <script>
-    import rawIngredients from "../../ingredients.json";
-    import IngredientsChoice from "../../lib/components/IngredientsChoice.svelte";
     import RecipeCard from "../../lib/components/RecipeCard.svelte";
     import RecipeCardCompact from "../../lib/components/RecipeCardCompact.svelte";
 
@@ -10,7 +8,7 @@
     let showCompactView = $state(false);
     let showFilter = $state(false);
     let ingredients = $state(
-        rawIngredients.map((ingredient) => ({ ...ingredient, checked: false }))
+        data.ingredients.map((ingredient) => ({ ...ingredient, checked: false }))
     );
     let error = recipes.error;
 
@@ -55,10 +53,10 @@
 {#if showFilter}
     <div
         class="mt-4 d-flex flex-wrap gap-3 position-fixed col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"
-        style="max-width: 10%;"
+        style="max-width: 15%; max-height: 70%; overflow: auto;"
     >
         {#each ingredients as ingredient}
-            <div style="width: 8rem; gap:0.5rem;">
+            <div style="width: 10rem; gap:0.5rem;">
                 <input
                     class="form-check-input"
                     type="checkbox"

@@ -9,48 +9,53 @@
     }
 </script>
 
-<div>
-    <a class="btn btn-secondary" href="/recipes">Back</a>
-    <a class="btn btn-primary" href="/recipes/{recipe._id}/update">Edit</a>
-    <form method="POST" action="?/delete">
-        <input type="hidden" name="_id" value={recipe._id} />
-        <button class="btn btn-danger mt-1" type="submit">Delete recipe</button>
-    </form>
-</div>
+<div class="d-flex mt-4">
+    <div>
+        <a class="btn btn-secondary" href="/recipes">Back</a>
+        <a class="btn btn-primary" href="/recipes/{recipe._id}/update">Edit</a>
+        <form method="POST" action="?/delete">
+            <input type="hidden" name="_id" value={recipe._id} />
+            <button class="btn btn-danger mt-1" type="submit"
+                >Delete recipe</button
+            >
+        </form>
+    </div>
 
-{#if form?.error}
-    <p class="error">{form?.error}</p>
-{/if}
+    {#if form?.error}
+        <p class="error">{form?.error}</p>
+    {/if}
 
-{#if hasErrors()}
-    <p class="error">{error}</p>
-{:else}
-    <div
-        class="container d-flex flex-column gap-1 align-items-center col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8"
-    >
-        <h1>{recipe.name}</h1>
-        <img src="/images/placeholder.png" alt="" />
-        <div class="text-container">
-            <p>{recipe.description}</p>
-            <div class="ingredients-container">
-                <h2>Ingredients</h2>
-                <ul>
-                    {#each recipe.ingredients as ingredient}
-                        <li>{ingredient.name}</li>
-                    {/each}
-                </ul>
+    {#if hasErrors()}
+        <p class="error">{error}</p>
+    {:else}
+        <div
+            class="container d-flex flex-column gap-1 align-items-center col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8"
+        >
+            <h1>{recipe.name}</h1>
+            <img src="/images/placeholder.png" alt="" />
+            <div class="text-container">
+                <p>{recipe.description}</p>
+                <div class="ingredients-container">
+                    <h2>Ingredients</h2>
+                    <ul>
+                        {#each recipe.ingredients as ingredient}
+                            <li>{ingredient.name}</li>
+                        {/each}
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-{/if}
+    {/if}
+</div>
 
 <style>
+    
     img {
-        width: 100%;
+        width: 50%;
     }
 
     .text-container {
-        width: 90%;
+        width: 80%;
         padding: 1rem;
     }
 

@@ -8,6 +8,7 @@
 
 <style>
     img {
+        width: 40%;
         border-radius: 0.5%;
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     }

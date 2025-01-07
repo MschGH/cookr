@@ -41,12 +41,15 @@
         required
     /><br />
     <label class="mb-1" for="ingredients">Ingredients*</label><br />
+    {#if errorMessage}
+        <p class="text-danger">{errorMessage}</p>
+    {/if}
     <div
         class="d-flex flex-wrap gap-3 col-10 col-sm-12 col-md-12 col-lg-10 col-xl-8"
         style="max-width: 56rem;"
     >
         {#each ingredients as ingredient}
-            <div style="width: 8rem; gap:0.5rem;">
+            <div style="width: 10rem; gap:0.5rem;">
                 <input
                     class="form-check-input"
                     type="checkbox"
@@ -62,9 +65,6 @@
     <input style="max-width: 16rem;" type="text" name="new-ing" id="new-ing">
     <button class="btn btn-secondary mt-2" type="button" onclick={newIngredient}
         >add new ingredient</button><br><br />
-    {#if errorMessage}
-        <p class="text-danger">{errorMessage}</p>
-    {/if}
     <button class="btn btn-success mt-2" type="submit">Add recipe</button>
     <a class="btn btn-dark mt-2" href="/recipes">Cancel</a>
 </form>
